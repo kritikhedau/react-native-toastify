@@ -2,8 +2,8 @@
 
 A beautiful, customizable toast notification library for React Native with smooth animations, dark mode support, and extensive customization options.
 
-![npm version](https://img.shields.io/npm/v/react-native-toastify)
-![license](https://img.shields.io/npm/l/react-native-toastify)
+![npm version](https://img.shields.io/npm/v/%40kritikhedau/react-native-toastify)
+![license](https://img.shields.io/npm/l/%40kritikhedau/react-native-toastify)
 
 ## Features
 
@@ -21,9 +21,9 @@ A beautiful, customizable toast notification library for React Native with smoot
 ## Installation
 
 ```bash
-npm install react-native-toastify
+npm install @kritikhedau/react-native-toastify
 # or
-yarn add react-native-toastify
+yarn add @kritikhedau/react-native-toastify
 ```
 
 **Note:** This library requires `react-native-reanimated`. If not already installed:
@@ -39,7 +39,7 @@ yarn add react-native-reanimated
 ### 1. Wrap Your App with ToastProvider
 
 ```tsx
-import { ToastProvider } from 'react-native-toastify';
+import { ToastProvider } from '@kritikhedau/react-native-toastify';
 
 export default function App() {
   return <ToastProvider>{/* Your app content */}</ToastProvider>;
@@ -49,7 +49,7 @@ export default function App() {
 ### 2. Use Toasts in Your Components
 
 ```tsx
-import { useToast } from 'react-native-toastify';
+import { useToast } from '@kritikhedau/react-native-toastify';
 
 function MyComponent() {
   const { show } = useToast();
@@ -251,7 +251,7 @@ import type {
   ToastOptions,
   ToastType,
   ToastPosition,
-} from 'react-native-toastify';
+} from '@kritikhedau/react-native-toastify';
 
 const options: ToastOptions = {
   type: 'success',

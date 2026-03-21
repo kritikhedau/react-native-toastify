@@ -8,7 +8,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useToast } from 'react-native-toastify';
+import { useToast } from '@kritikhedau/react-native-toastify';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Modern Color Theme
