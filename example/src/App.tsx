@@ -1,20 +1,14 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-toastify';
+import { ToastProvider } from 'react-native-toastify';
 
-const result = multiply(3, 7);
+import Example from './Example';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaProvider>
+      <ToastProvider>
+        <Example />
+      </ToastProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
