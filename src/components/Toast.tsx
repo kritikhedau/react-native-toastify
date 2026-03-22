@@ -250,6 +250,16 @@ export const Toast = ({
     };
   });
 
+  const backgroundColor = getBackgroundColor(toast.options.type);
+  const icon = getIconForType(toast.options.type);
+  const resolvedBackgroundColor =
+    toast.options.backgroundColor ?? backgroundColor;
+  const resolvedBorderRadius = toast.options.borderRadius ?? 12;
+  const textStyleOverrides = {
+    fontSize: toast.options.fontSize ?? undefined,
+    fontFamily: toast.options.fontFamily ?? undefined,
+  };
+
   const containerStyle: any = [
     styles.toastContainer,
     animatedStyle,
@@ -259,6 +269,7 @@ export const Toast = ({
       marginBottom: 0,
       top: position === 'top' ? topOffset ?? 100 : undefined,
       bottom: position === 'bottom' ? bottomOffset ?? 0 : undefined,
+      borderRadius: resolvedBorderRadius,
     },
   ];
 
@@ -283,20 +294,25 @@ export const Toast = ({
     }, 250);
   };
 
-  const backgroundColor = getBackgroundColor(toast.options.type);
-  const icon = getIconForType(toast.options.type);
-
   return (
     <AnimatedView style={containerStyle}>
       <Pressable
-        style={[styles.toast, { backgroundColor }]}
+        style={[
+          styles.toast,
+          {
+            backgroundColor: resolvedBackgroundColor,
+            borderRadius: resolvedBorderRadius,
+          },
+        ]}
         onPress={handlePress}
         android_ripple={{ color: 'rgba(255, 255, 255, 0.1)' }}
       >
         {icon ? <Text style={styles.icon}>{icon}</Text> : null}
         <View style={styles.contentContainer}>
           {typeof toast.content === 'string' ? (
-            <Text style={styles.text}>{toast.content}</Text>
+            <Text style={[styles.text, textStyleOverrides]}>
+              {toast.content}
+            </Text>
           ) : (
             toast.content
           )}
@@ -309,7 +325,9 @@ export const Toast = ({
               handlePress();
             }}
           >
-            <Text style={styles.actionText}>{toast.options.action.label}</Text>
+            <Text style={[styles.actionText, textStyleOverrides]}>
+              {toast.options.action.label}
+            </Text>
           </TouchableOpacity>
         )}
       </Pressable>

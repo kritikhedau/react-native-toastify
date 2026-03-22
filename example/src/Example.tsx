@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  Platform,
   useColorScheme,
 } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
@@ -219,6 +220,43 @@ const Example = () => {
     show(richContent, {
       type: 'default',
       duration: 5000,
+    });
+  };
+
+  // =====================================================
+  // STYLE OVERRIDE EXAMPLES
+  // =====================================================
+
+  const showStyledToast = () => {
+    show('Custom background, radius, and font', {
+      type: 'success',
+      backgroundColor: '#111827',
+      borderRadius: 20,
+      fontSize: 18,
+      fontFamily: Platform.select({
+        ios: 'Avenir-Heavy',
+        android: 'sans-serif-medium',
+        default: undefined,
+      }),
+    });
+  };
+
+  const showRoundedToast = () => {
+    show('Extra rounded corners', {
+      type: 'info',
+      borderRadius: 28,
+    });
+  };
+
+  const showLargeTextToast = () => {
+    show('Bigger, bolder message', {
+      type: 'default',
+      fontSize: 20,
+      fontFamily: Platform.select({
+        ios: 'Avenir-Heavy',
+        android: 'sans-serif-black',
+        default: undefined,
+      }),
     });
   };
 
@@ -438,6 +476,32 @@ const Example = () => {
           </View>
         </View>
 
+        {/* Style Overrides Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Style Overrides</Text>
+          <View style={styles.buttonColumn}>
+            <WideButton
+              onPress={showStyledToast}
+              label="Custom Style"
+              description="Background, radius, and font"
+              theme={theme}
+              testID="maestro-custom-style"
+            />
+            <WideButton
+              onPress={showRoundedToast}
+              label="Rounded"
+              description="Large border radius"
+              theme={theme}
+            />
+            <WideButton
+              onPress={showLargeTextToast}
+              label="Large Text"
+              description="Custom font size and family"
+              theme={theme}
+            />
+          </View>
+        </View>
+
         {/* Programmatic Control Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Programmatic Control</Text>
@@ -532,6 +596,7 @@ interface WideButtonProps {
   description: string;
   theme: typeof Colors.light;
   accent?: string;
+  testID?: string;
 }
 
 const WideButton: React.FC<WideButtonProps> = ({
@@ -540,6 +605,7 @@ const WideButton: React.FC<WideButtonProps> = ({
   description,
   theme,
   accent,
+  testID,
 }) => (
   <TouchableOpacity
     onPress={onPress}
@@ -548,6 +614,7 @@ const WideButton: React.FC<WideButtonProps> = ({
       { borderColor: accent || theme.border } as ViewStyle,
     ]}
     activeOpacity={0.7}
+    testID={testID}
   >
     <View style={styles.wideButtonContent}>
       <Text

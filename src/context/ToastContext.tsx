@@ -2,6 +2,7 @@ import type {
   Toast,
   ToastContextValue,
   ToastOptions,
+  ResolvedToastOptions,
 } from '../types/Toast.types';
 import {
   createContext,
@@ -15,7 +16,7 @@ type ToastProviderProps = {
   children: ReactNode;
 };
 
-const DEFAULT_TOAST_OPTIONS: Required<ToastOptions> = {
+const DEFAULT_TOAST_OPTIONS: ResolvedToastOptions = {
   duration: 3000,
   type: 'default',
   position: 'top',

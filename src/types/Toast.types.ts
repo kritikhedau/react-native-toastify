@@ -8,16 +8,31 @@ export interface ToastOptions {
   type?: ToastType;
   position?: ToastPosition;
   onClose?: () => void;
+  backgroundColor?: string;
+  borderRadius?: number;
+  fontSize?: number;
+  fontFamily?: string;
   action?: {
     label: string;
     onPress: () => void;
   } | null;
 }
 
+export type ResolvedToastOptions = Omit<
+  ToastOptions,
+  'duration' | 'type' | 'position' | 'onClose' | 'action'
+> & {
+  duration: number;
+  type: ToastType;
+  position: ToastPosition;
+  onClose: () => void;
+  action: { label: string; onPress: () => void } | null;
+};
+
 export interface Toast {
   id: string;
   content: ReactNode | string;
-  options: Required<ToastOptions>;
+  options: ResolvedToastOptions;
 }
 
 export interface ToastContextValue {

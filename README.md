@@ -5,6 +5,8 @@ A beautiful, customizable toast notification library for React Native with smoot
 ![npm version](https://img.shields.io/npm/v/%40kritikhedau/react-native-toastify)
 ![license](https://img.shields.io/npm/l/%40kritikhedau/react-native-toastify)
 
+![Toast Demo](./demos/Simulator%20Screen%20Recording%20-%20iPhone%2017%20Pro%20-%202026-03-22%20at%2013.27.30.gif)
+
 ## Features
 
 - 🎨 **5 Toast Types** - Default, Success, Error, Warning, Info
@@ -201,6 +203,19 @@ Wraps your application to provide toast functionality.
 </ToastProvider>
 ```
 
+Optional offsets for fine-tuning the toast position:
+
+```tsx
+<ToastProvider topOffset={120} bottomOffset={80}>
+  <YourApp />
+</ToastProvider>
+```
+
+| Prop           | Type     | Default           | Description                    |
+| -------------- | -------- | ----------------- | ------------------------------ |
+| `topOffset`    | `number` | `height * 0.1072` | Distance from top of the screen |
+| `bottomOffset` | `number` | `height * 0.1072` | Distance from bottom of the screen |
+
 ### useToast Hook
 
 Returns an object with toast control methods:
@@ -214,13 +229,17 @@ Returns an object with toast control methods:
 
 ### ToastOptions
 
-| Property   | Type                                                       | Default     | Description                     |
-| ---------- | ---------------------------------------------------------- | ----------- | ------------------------------- |
-| `type`     | `'default' \| 'success' \| 'error' \| 'warning' \| 'info'` | `'default'` | Toast visual style              |
-| `position` | `'top' \| 'bottom'`                                        | `'top'`     | Screen position                 |
-| `duration` | `number`                                                   | `3000`      | Duration in ms (0 = persistent) |
-| `onClose`  | `() => void`                                               | `undefined` | Callback when toast closes      |
-| `action`   | `{ label: string, onPress: () => void } \| null`           | `null`      | Action button                   |
+| Property          | Type                                                       | Default     | Description                     |
+| ----------------- | ---------------------------------------------------------- | ----------- | ------------------------------- |
+| `type`            | `'default' \| 'success' \| 'error' \| 'warning' \| 'info'` | `'default'` | Toast visual style              |
+| `position`        | `'top' \| 'bottom'`                                        | `'top'`     | Screen position                 |
+| `duration`        | `number`                                                   | `3000`      | Duration in ms (0 = persistent) |
+| `onClose`         | `() => void`                                               | `undefined` | Callback when toast closes      |
+| `backgroundColor` | `string`                                                   | `undefined` | Override background color       |
+| `borderRadius`    | `number`                                                   | `12`        | Override toast border radius    |
+| `fontSize`        | `number`                                                   | `16`        | Override toast text font size   |
+| `fontFamily`      | `string`                                                   | `undefined` | Override toast text font family |
+| `action`          | `{ label: string, onPress: () => void } \| null`           | `null`      | Action button                   |
 
 ## Theming
 

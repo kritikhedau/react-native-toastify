@@ -1,0 +1,19 @@
+appId: toastify.example
+---
+- launchApp
+- assertVisible: "React Native Toastify"
+
+# Basic toast
+- tapOn: "Default"
+- assertVisible: "This is a default toast message"
+
+# Style overrides demo
+- scrollUntilVisible:
+    element: "Style Overrides"
+    direction: DOWN
+    visibilityPercentage: 50
+    centerElement: true
+    timeout: 30000
+- tapOn:
+    id: "maestro-custom-style"
+- assertVisible: "Custom background, radius, and font"
